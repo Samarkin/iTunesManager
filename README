@@ -1,0 +1,14 @@
+iTunesManager - small Windows utility that extends functionality of Apple iTunes.
+With iTunesManager you can play/pause and switch tracks with hot keys and quickly jump to the composition you need.
+
+Default settings are following:
+ - Win+PgUp - prev track;
+ - Win+PgDn - next track;
+ - Win+Ins - play/pause;
+ - Win+Home - open quick jump ("Song Selection") window
+(for now it can be changed only through .config file, settings window is pending).
+
+In "Song Selection" window you can select one of the existing playlists or just enter artist name (or even its part) - new playlist will be created automatically.
+After that all you need to do is to select song from the playlist and press "Play" (or "Shuffle") button to play (or shuffle) the selected track.
+
+You can say - this kind of functionality already exists in iTunes. Yes, but now you do not have to use mouse (or pressing Tab repeatedly). If you don't like it - you still can use it for hotkeys or choose any other iTunes hot key application - there are a lot of them available at the Internet.
