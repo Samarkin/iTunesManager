@@ -1,0 +1,30 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WindowsFormsApplication1.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="PlayPauseHotkey" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">Ins</Value>
+    </Setting>
+    <Setting Name="PlayPauseModifiers" Type="WindowsFormsApplication1.Helpers.ModifierKeys" Scope="User">
+      <Value Profile="(Default)">Win</Value>
+    </Setting>
+    <Setting Name="NextTrackHotkey" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">PgDn</Value>
+    </Setting>
+    <Setting Name="NextTrackModifiers" Type="WindowsFormsApplication1.Helpers.ModifierKeys" Scope="User">
+      <Value Profile="(Default)">Win</Value>
+    </Setting>
+    <Setting Name="PrevTrackHotkey" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">PgUp</Value>
+    </Setting>
+    <Setting Name="PrevTrackModifiers" Type="WindowsFormsApplication1.Helpers.ModifierKeys" Scope="User">
+      <Value Profile="(Default)">Win</Value>
+    </Setting>
+    <Setting Name="SelectSongHotkey" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">End</Value>
+    </Setting>
+    <Setting Name="SelectSongModifiers" Type="WindowsFormsApplication1.Helpers.ModifierKeys" Scope="User">
+      <Value Profile="(Default)">Win</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
