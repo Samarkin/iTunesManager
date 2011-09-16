@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -7,7 +8,7 @@ namespace WindowsFormsApplication1.Helpers
 	public sealed  class KeyboardHook : IDisposable
 	{
 		// Registers a hot key with Windows.
-		[DllImport("user32.dll")]
+		[DllImport("user32.dll", SetLastError = true)]
 		private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
 		// Unregisters the hot key with Windows.
 		[DllImport("user32.dll")]
@@ -84,7 +85,10 @@ namespace WindowsFormsApplication1.Helpers
 
 			// register the hot key.
 			if (!RegisterHotKey(_window.Handle, _currentId, (uint)modifier, (uint)key))
-				throw new InvalidOperationException("Couldn't register the hot key.");
+			{
+				int err = Marshal.GetLastWin32Error();
+				throw new InvalidOperationException(string.Format("Couldn't register the hot key. Error #{0}", err));
+			}
 		}
 
 		/// <summary>
@@ -131,6 +135,7 @@ namespace WindowsFormsApplication1.Helpers
 	[Flags]
 	public enum ModifierKeys : uint
 	{
+		None = 0,
 		Alt = 1,
 		Control = 2,
 		Shift = 4,

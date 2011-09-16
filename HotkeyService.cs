@@ -30,9 +30,17 @@ namespace WindowsFormsApplication1
 		public void RegisterHotKey(ModifierKeys modifier, Keys key, EventHandler<KeyPressedEventArgs> handler)
 		{
 			var newHook = new KeyboardHook();
-			newHook.KeyPressed += handler;
-			newHook.RegisterHotKey(modifier, key);
-			_hooks.Add(newHook);
+			try
+			{
+				newHook.KeyPressed += handler;
+				newHook.RegisterHotKey(modifier, key);
+				_hooks.Add(newHook);
+			}
+			catch (InvalidOperationException e)
+			{
+				MessageBox.Show(e.Message + "\n" + (modifier != ModifierKeys.None ? modifier.ToString() + " + " : "") + key.ToString(), "Error");
+				newHook.Dispose();
+			}
 		}
 
 		private void PlayPause(object sender, KeyPressedEventArgs e)
