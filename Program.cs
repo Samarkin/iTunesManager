@@ -34,6 +34,10 @@ namespace WindowsFormsApplication1
 					new VisualService {
 						Form = new MainForm(player),
 						MenuEntry = "Show &MiniPlayer"
+					},
+					new VisualService {
+						Form = new SettingsForm(),
+						MenuEntry = "S&ettings"
 					}
 				}))
 				{
