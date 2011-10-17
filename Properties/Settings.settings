@@ -26,5 +26,14 @@
     <Setting Name="SelectSongModifiers" Type="WindowsFormsApplication1.Helpers.ModifierKeys" Scope="User">
       <Value Profile="(Default)">Win</Value>
     </Setting>
+    <Setting Name="OSDOpacity" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0.7</Value>
+    </Setting>
+    <Setting Name="OSDDisplayTime" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">3000</Value>
+    </Setting>
+    <Setting Name="OSDPosition" Type="WindowsFormsApplication1.Helpers.OSDPosition" Scope="User">
+      <Value Profile="(Default)">ScreenBottom</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -41,7 +41,10 @@ namespace WindowsFormsApplication1
 					}
 				}))
 				{
-					Application.Run();
+					using (new OSDService(player))
+					{
+						Application.Run();
+					}
 				}
 			}
 		}
