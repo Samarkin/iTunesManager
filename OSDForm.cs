@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Reflection;
+using System.Text;
 using System.Windows.Forms;
 using WindowsFormsApplication1.Helpers;
 using WindowsFormsApplication1.Properties;
@@ -113,12 +114,19 @@ namespace WindowsFormsApplication1
 			showHideTimer.Start();
 		}
 
-		public void DisplayOSD(string title, string artist, string album, string artworkFileName)
+		public void DisplayOSD(string title, int duration, int rating, string artist, string album, string artworkFileName)
 		{
 			Action displayOSD = () =>
 			{
 				closeTimer.Stop();
 				titleLabel.Text = title;
+				durationLabel.Text = string.Format("{0}:{1:00}", duration / 60, duration % 60);
+				var sb = new StringBuilder();
+				for (int i = 0; i < 100; i += 20)
+				{
+					sb.Append(i < rating ? '★' : '☆');
+				}
+				ratingLabel.Text = sb.ToString();
 				artistLabel.Text = artist;
 				albumLabel.Text = album;
 				if (!string.IsNullOrEmpty(artworkFileName))

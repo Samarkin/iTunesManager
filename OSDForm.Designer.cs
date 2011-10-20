@@ -35,6 +35,8 @@
 			this.artistLabel = new System.Windows.Forms.Label();
 			this.albumLabel = new System.Windows.Forms.Label();
 			this.showHideTimer = new System.Windows.Forms.Timer(this.components);
+			this.durationLabel = new System.Windows.Forms.Label();
+			this.ratingLabel = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.artworkPicture)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -56,7 +58,7 @@
 			this.titleLabel.AutoSize = true;
 			this.titleLabel.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.titleLabel.ForeColor = System.Drawing.Color.White;
-			this.titleLabel.Location = new System.Drawing.Point(118, 11);
+			this.titleLabel.Location = new System.Drawing.Point(118, -3);
 			this.titleLabel.Name = "titleLabel";
 			this.titleLabel.Size = new System.Drawing.Size(94, 47);
 			this.titleLabel.TabIndex = 1;
@@ -67,7 +69,7 @@
 			this.artistLabel.AutoSize = true;
 			this.artistLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
 			this.artistLabel.ForeColor = System.Drawing.Color.White;
-			this.artistLabel.Location = new System.Drawing.Point(122, 58);
+			this.artistLabel.Location = new System.Drawing.Point(122, 42);
 			this.artistLabel.Name = "artistLabel";
 			this.artistLabel.Size = new System.Drawing.Size(46, 20);
 			this.artistLabel.TabIndex = 2;
@@ -77,7 +79,7 @@
 			// 
 			this.albumLabel.AutoSize = true;
 			this.albumLabel.ForeColor = System.Drawing.Color.White;
-			this.albumLabel.Location = new System.Drawing.Point(123, 78);
+			this.albumLabel.Location = new System.Drawing.Point(122, 64);
 			this.albumLabel.Name = "albumLabel";
 			this.albumLabel.Size = new System.Drawing.Size(65, 13);
 			this.albumLabel.TabIndex = 3;
@@ -87,6 +89,28 @@
 			// 
 			this.showHideTimer.Interval = 10;
 			// 
+			// durationLabel
+			// 
+			this.durationLabel.AutoSize = true;
+			this.durationLabel.ForeColor = System.Drawing.Color.White;
+			this.durationLabel.Location = new System.Drawing.Point(122, 82);
+			this.durationLabel.Name = "durationLabel";
+			this.durationLabel.Size = new System.Drawing.Size(28, 13);
+			this.durationLabel.TabIndex = 4;
+			this.durationLabel.Text = "0:00";
+			// 
+			// ratingLabel
+			// 
+			this.ratingLabel.AutoSize = true;
+			this.ratingLabel.BackColor = System.Drawing.Color.Black;
+			this.ratingLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
+			this.ratingLabel.ForeColor = System.Drawing.Color.White;
+			this.ratingLabel.Location = new System.Drawing.Point(162, 81);
+			this.ratingLabel.Name = "ratingLabel";
+			this.ratingLabel.Size = new System.Drawing.Size(57, 13);
+			this.ratingLabel.TabIndex = 5;
+			this.ratingLabel.Text = "★★★☆☆";
+			// 
 			// OSDForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -94,6 +118,8 @@
 			this.BackColor = System.Drawing.Color.Black;
 			this.ClientSize = new System.Drawing.Size(606, 102);
 			this.ControlBox = false;
+			this.Controls.Add(this.ratingLabel);
+			this.Controls.Add(this.durationLabel);
 			this.Controls.Add(this.albumLabel);
 			this.Controls.Add(this.artistLabel);
 			this.Controls.Add(this.titleLabel);
@@ -120,5 +146,7 @@
 		private System.Windows.Forms.Label artistLabel;
 		private System.Windows.Forms.Label albumLabel;
 		private System.Windows.Forms.Timer showHideTimer;
+		private System.Windows.Forms.Label durationLabel;
+		private System.Windows.Forms.Label ratingLabel;
 	}
 }

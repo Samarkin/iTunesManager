@@ -38,9 +38,11 @@ namespace WindowsFormsApplication1
 						artwork.SaveArtworkToFile(artworkFileName);
 					}
 
-					var name = current.Name;
+					var name = (current.TrackNumber >= 1)
+						? string.Format("{0}. {1}", current.TrackNumber, current.Name)
+						: current.Name;
 					var album = string.Format("{0} ({1})", current.Album, current.Year);
-					_osd.DisplayOSD(name, current.Artist, album, artworkFileName);
+					_osd.DisplayOSD(name, current.Duration, current.Rating, current.Artist, album, artworkFileName);
 				}
 				finally
 				{

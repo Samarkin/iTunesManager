@@ -16,13 +16,17 @@ namespace WindowsFormsApplication1
 				ContextMenu = new ContextMenu(
 					visualServices
 						.Select(service => new MenuItem(service.MenuEntry, (o,e) => service.Activate()))
-						.Concat(new[] { new MenuItem("E&xit", (o,e) => Application.Exit()) }).ToArray()
+						.Concat(new[] {
+							new MenuItem("-"),
+							new MenuItem("E&xit", (o,e) => Application.Exit())
+						}).ToArray()
 					),
 				Text = "iTunes",
 				Visible = true
 			};
 			if (visualServices.Length > 0)
 			{
+				_icon.ContextMenu.MenuItems.OfType<MenuItem>().First().DefaultItem = true;
 				Action a = visualServices.First().Activate;
 				_icon.DoubleClick += (o, e) => a();
 			}

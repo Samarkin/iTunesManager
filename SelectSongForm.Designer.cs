@@ -72,6 +72,8 @@
 			// 
 			this.songComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
 						| System.Windows.Forms.AnchorStyles.Right)));
+			this.songComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+			this.songComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
 			this.songComboBox.FormattingEnabled = true;
 			this.songComboBox.Location = new System.Drawing.Point(12, 65);
 			this.songComboBox.Name = "songComboBox";
