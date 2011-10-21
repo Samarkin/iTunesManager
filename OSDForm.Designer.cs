@@ -104,7 +104,7 @@
 			this.ratingLabel.AutoSize = true;
 			this.ratingLabel.BackColor = System.Drawing.Color.Black;
 			this.ratingLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7F);
-			this.ratingLabel.ForeColor = System.Drawing.Color.White;
+			this.ratingLabel.ForeColor = System.Drawing.Color.Silver;
 			this.ratingLabel.Location = new System.Drawing.Point(162, 81);
 			this.ratingLabel.Name = "ratingLabel";
 			this.ratingLabel.Size = new System.Drawing.Size(57, 13);
