@@ -16,7 +16,6 @@ namespace WindowsFormsApplication1
 				{
 					Form.WindowState = FormWindowState.Normal;
 				}
-				//Form.Focus();
 				Form.Activate();
 			}
 			else

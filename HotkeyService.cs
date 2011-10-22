@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using WindowsFormsApplication1.Helpers;
@@ -10,37 +11,90 @@ namespace WindowsFormsApplication1
 {
 	public class HotkeyService : IDisposable
 	{
-		private readonly List<KeyboardHook> _hooks;
+		private readonly List<string> _settings;
+		private readonly List<EventHandler<KeyPressedEventArgs>> _handlers;
+		private readonly Queue<KeyboardHook> _hooks;
 		private readonly iTunesAppClass _player;
+
+		private const string ModifiersSettingFormat = "{0}Modifiers";
+		private const string KeysSettingFormat = "{0}Hotkey";
 
 		public HotkeyService(iTunesAppClass player)
 		{
 			if(player == null) return;
 			_player = player;
 
-			_hooks = new List<KeyboardHook>();
+			_hooks = new Queue<KeyboardHook>();
+			_settings = new List<string>();
+			_handlers = new List<EventHandler<KeyPressedEventArgs>>();
 
-			RegisterHotKey(Settings.Default.PlayPauseModifiers, Settings.Default.PlayPauseHotkey, PlayPause);
-			RegisterHotKey(Settings.Default.NextTrackModifiers, Settings.Default.NextTrackHotkey, NextTrack);
-			RegisterHotKey(Settings.Default.PrevTrackModifiers, Settings.Default.PrevTrackHotkey, PrevTrack);
+			RegisterHotKey("PlayPause", PlayPause);
+			RegisterHotKey("NextTrack", NextTrack);
+			RegisterHotKey("PrevTrack", PrevTrack);
 
-			Application.ApplicationExit += ApplicationExit;
+			Settings.Default.SettingsSaving += SettingsSaving;
 		}
 
-		public void RegisterHotKey(ModifierKeys modifier, Keys key, EventHandler<KeyPressedEventArgs> handler)
+		private void SettingsSaving(object sender, CancelEventArgs e)
 		{
+			RefreshHooks();
+		}
+
+		public void RegisterHotKey(string settingName, EventHandler<KeyPressedEventArgs> handler)
+		{
+			_settings.Add(settingName);
+			_handlers.Add(handler);
+			var newHook = CreateHook(settingName, handler);
+			if(newHook != null)
+				_hooks.Enqueue(newHook);
+		}
+
+		public void RefreshHooks()
+		{
+			DestroyHooks();
+			int n = _settings.Count;
+			for (int i = 0; i < n; i++)
+			{
+				var newHook = CreateHook(_settings[i], _handlers[i]);
+				if (newHook != null)
+					_hooks.Enqueue(newHook);
+			}
+		}
+
+		private KeyboardHook CreateHook(string settingName, EventHandler<KeyPressedEventArgs> handler)
+		{
+			var modifier = ModifierKeys.None;
+			var key = Keys.None;
 			var newHook = new KeyboardHook();
 			try
 			{
+				modifier = GetSetting<ModifierKeys>(string.Format(ModifiersSettingFormat, settingName));
+				key = GetSetting<Keys>(string.Format(KeysSettingFormat, settingName));
 				newHook.KeyPressed += handler;
 				newHook.RegisterHotKey(modifier, key);
-				_hooks.Add(newHook);
+				return newHook;
 			}
 			catch (InvalidOperationException e)
 			{
 				MessageBox.Show(e.Message + "\n" + (modifier != ModifierKeys.None ? modifier.ToString() + " + " : "") + key.ToString(), "Error");
 				newHook.Dispose();
+				return null;
 			}
+			catch (Exception e)
+			{
+				MessageBox.Show(e.Message, "Error");
+				newHook.Dispose();
+				return null;
+			}
+		}
+
+		private T GetSetting<T>(string name) 
+		{
+			var setting = Settings.Default[name];
+			if(setting == null)
+				throw new Exception(string.Format("Cannot find setting named \"{0}\"!", name));
+
+			return (T)setting;
 		}
 
 		private void PlayPause(object sender, KeyPressedEventArgs e)
@@ -82,18 +136,19 @@ namespace WindowsFormsApplication1
 			}
 		}
 
-		void ApplicationExit(object sender, EventArgs e)
+		private void DestroyHooks()
 		{
-			Dispose();
+			int n = _hooks.Count;
+			for (int i = 0; i < n; i++)
+			{
+				var hook = _hooks.Dequeue();
+				hook.Dispose();
+			}
 		}
 
 		public void Dispose()
 		{
-			foreach (var hook in _hooks)
-			{
-				hook.Dispose();
-			}
-			_hooks.Clear();
+			DestroyHooks();
 		}
 	}
 }

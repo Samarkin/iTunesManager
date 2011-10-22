@@ -8,17 +8,30 @@ namespace WindowsFormsApplication1
 		public SettingsForm()
 		{
 			InitializeComponent();
-			propertyGrid1.SelectedObject = Settings.Default;
 		}
 
 		private void SettingsFormFormClosing(object sender, FormClosingEventArgs e)
 		{
-			Settings.Default.Save();
 			if (e.CloseReason == CloseReason.ApplicationExitCall) return;
-
 			e.Cancel = true;
-			MessageBox.Show("Changes will take effect only after next run", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+			switch(MessageBox.Show("Do you want to save changes?", "Save", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning))
+			{
+				case DialogResult.Yes:
+					Settings.Default.Save();
+					break;
+				case DialogResult.No:
+					Settings.Default.Reload();
+					break;
+				case DialogResult.Cancel:
+					return;
+			}
 			Hide();
+		}
+
+		private void SettingsFormVisibleChanged(object sender, System.EventArgs e)
+		{
+			if (Visible)
+				propertyGrid1.SelectedObject = Settings.Default;
 		}
 	}
 }

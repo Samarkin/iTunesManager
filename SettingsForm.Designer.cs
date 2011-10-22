@@ -48,7 +48,8 @@
 			this.ClientSize = new System.Drawing.Size(284, 378);
 			this.Controls.Add(this.propertyGrid1);
 			this.Name = "SettingsForm";
-			this.Text = "Change hotkeys";
+			this.Text = "Change settings";
+			this.VisibleChanged += new System.EventHandler(this.SettingsFormVisibleChanged);
 			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SettingsFormFormClosing);
 			this.ResumeLayout(false);
 

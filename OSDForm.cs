@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Reflection;
 using System.Text;
@@ -19,15 +20,25 @@ namespace WindowsFormsApplication1
 
 		private double _targetOpacity;
 		private bool _isShowing;
-		private readonly double _maxOpacity;
+		private double _maxOpacity;
+		private OSDPosition _osdPosition;
 
 		public OSDForm()
 		{
 			InitializeComponent();
-			closeTimer.Interval = Settings.Default.OSDDisplayTime;
+			Settings.Default.SettingsSaving += SettingsSaving;
 			closeTimer.Tick += CloseTimerTick;
 			showHideTimer.Tick += ShowHideTimerTick;
 
+			ApplySettings();
+
+			// immediately create window
+			base.CreateHandle();
+		}
+
+		private void ApplySettings()
+		{
+			closeTimer.Interval = Settings.Default.OSDDisplayTime;
 			var opacity = Settings.Default.OSDOpacity;
 			_maxOpacity = Math.Max(Math.Min(opacity, 1), 0);
 			// ReSharper disable CompareOfFloatsByEqualityOperator
@@ -37,9 +48,12 @@ namespace WindowsFormsApplication1
 			if (_maxOpacity != opacity)
 				Settings.Default.OSDOpacity = _maxOpacity;
 			// ReSharper restore CompareOfFloatsByEqualityOperator
+			_osdPosition = Settings.Default.OSDPosition;
+		}
 
-			// immediately create window
-			base.CreateHandle();
+		private void SettingsSaving(object sender, CancelEventArgs e)
+		{
+			ApplySettings();
 		}
 
 		protected override CreateParams CreateParams
@@ -84,13 +98,13 @@ namespace WindowsFormsApplication1
 		private void SetWindowPosition()
 		{
 			var wa = Screen.GetWorkingArea(this);
-			if (Settings.Default.OSDPosition == OSDPosition.ScreenBottom)
+			if (_osdPosition == OSDPosition.ScreenBottom)
 			{
 				Top = wa.Height - Height;
 				Left = 0;
 				Width = wa.Width;
 			}
-			else if (Settings.Default.OSDPosition == OSDPosition.ScreenTop)
+			else if (_osdPosition == OSDPosition.ScreenTop)
 			{
 				Top = 0;
 				Left = 0;

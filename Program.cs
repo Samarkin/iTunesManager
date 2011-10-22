@@ -26,7 +26,7 @@ namespace WindowsFormsApplication1
 					MenuEntry = "&Select song"
 				};
 
-				hotkeyService.RegisterHotKey(Settings.Default.SelectSongModifiers, Settings.Default.SelectSongHotkey,
+				hotkeyService.RegisterHotKey("SelectSong",
 					(o, e) => selectSongVisualService.Activate());
 
 				// Tray service
