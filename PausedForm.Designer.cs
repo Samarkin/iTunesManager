@@ -67,6 +67,7 @@
 			this.Text = "PausedForm";
 			this.TopMost = true;
 			this.TransparencyKey = System.Drawing.Color.White;
+			this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
 			this.ResumeLayout(false);
 
 		}

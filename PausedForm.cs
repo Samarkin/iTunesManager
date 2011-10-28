@@ -42,6 +42,10 @@ namespace WindowsFormsApplication1
 			}
 			Opacity -= 0.05;
 			pausedLabel.Font = new Font(pausedLabel.Font.FontFamily, pausedLabel.Font.Size + 10);
+			if (!Visible)
+			{
+				Show();
+			}
 		}
 
 		public void Start()
@@ -49,13 +53,8 @@ namespace WindowsFormsApplication1
 			Action start = () =>
 			{
 				Opacity = 1;
-				Top = 0;
-				Left = 0;
-				Width = Screen.PrimaryScreen.WorkingArea.Width;
-				Height = Screen.PrimaryScreen.WorkingArea.Height;
-				pausedLabel.Font = new Font(pausedLabel.Font.FontFamily, 1);
+				pausedLabel.Font = new Font(pausedLabel.Font.FontFamily, 8.25f);
 				growTimer.Start();
-				Show();
 			};
 
 			if (InvokeRequired)
