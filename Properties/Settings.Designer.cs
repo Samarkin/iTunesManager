@@ -154,5 +154,17 @@ namespace WindowsFormsApplication1.Properties {
                 this["OSDPosition"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool OSDDisplayOnPause {
+            get {
+                return ((bool)(this["OSDDisplayOnPause"]));
+            }
+            set {
+                this["OSDDisplayOnPause"] = value;
+            }
+        }
     }
 }

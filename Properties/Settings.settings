@@ -35,5 +35,8 @@
     <Setting Name="OSDPosition" Type="WindowsFormsApplication1.Helpers.OSDPosition" Scope="User">
       <Value Profile="(Default)">ScreenBottom</Value>
     </Setting>
+    <Setting Name="OSDDisplayOnPause" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
