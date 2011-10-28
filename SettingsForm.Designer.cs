@@ -38,14 +38,15 @@
 						| System.Windows.Forms.AnchorStyles.Right)));
 			this.propertyGrid1.Location = new System.Drawing.Point(12, 12);
 			this.propertyGrid1.Name = "propertyGrid1";
-			this.propertyGrid1.Size = new System.Drawing.Size(260, 354);
+			this.propertyGrid1.Size = new System.Drawing.Size(274, 367);
 			this.propertyGrid1.TabIndex = 0;
+			this.propertyGrid1.ToolbarVisible = false;
 			// 
 			// SettingsForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(284, 378);
+			this.ClientSize = new System.Drawing.Size(298, 391);
 			this.Controls.Add(this.propertyGrid1);
 			this.Name = "SettingsForm";
 			this.Text = "Change settings";

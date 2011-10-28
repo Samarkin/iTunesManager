@@ -121,7 +121,7 @@ namespace WindowsFormsApplication1.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.7")]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.85")]
         public double OSDOpacity {
             get {
                 return ((double)(this["OSDOpacity"]));
@@ -133,7 +133,7 @@ namespace WindowsFormsApplication1.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("3000")]
+        [global::System.Configuration.DefaultSettingValueAttribute("5000")]
         public int OSDDisplayTime {
             get {
                 return ((int)(this["OSDDisplayTime"]));

@@ -110,6 +110,7 @@
     <Compile Include="SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SettingsWrapper.cs" />
     <Compile Include="TrayService.cs" />
     <Compile Include="VisualService.cs" />
   </ItemGroup>

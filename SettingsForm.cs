@@ -5,25 +5,38 @@ namespace WindowsFormsApplication1
 {
 	public partial class SettingsForm : Form
 	{
+		private bool _changed;
+
 		public SettingsForm()
 		{
 			InitializeComponent();
+			propertyGrid1.PropertyValueChanged += PropertyValueChanged;
+		}
+
+		private void PropertyValueChanged(object s, PropertyValueChangedEventArgs e)
+		{
+			_changed = true;
 		}
 
 		private void SettingsFormFormClosing(object sender, FormClosingEventArgs e)
 		{
 			if (e.CloseReason == CloseReason.ApplicationExitCall) return;
+
 			e.Cancel = true;
-			switch(MessageBox.Show("Do you want to save changes?", "Save", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning))
+			if (_changed)
 			{
-				case DialogResult.Yes:
-					Settings.Default.Save();
-					break;
-				case DialogResult.No:
-					Settings.Default.Reload();
-					break;
-				case DialogResult.Cancel:
-					return;
+				switch (MessageBox.Show("Do you want to save changes?",
+					"Save", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning))
+				{
+					case DialogResult.Yes:
+						Settings.Default.Save();
+						break;
+					case DialogResult.No:
+						Settings.Default.Reload();
+						break;
+					case DialogResult.Cancel:
+						return;
+				}
 			}
 			Hide();
 		}
@@ -31,7 +44,10 @@ namespace WindowsFormsApplication1
 		private void SettingsFormVisibleChanged(object sender, System.EventArgs e)
 		{
 			if (Visible)
-				propertyGrid1.SelectedObject = Settings.Default;
+			{
+				_changed = false;
+				propertyGrid1.SelectedObject = new SettingsWrapper();
+			}
 		}
 	}
 }

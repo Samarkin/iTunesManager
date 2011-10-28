@@ -27,10 +27,10 @@
       <Value Profile="(Default)">Win</Value>
     </Setting>
     <Setting Name="OSDOpacity" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">0.7</Value>
+      <Value Profile="(Default)">0.85</Value>
     </Setting>
     <Setting Name="OSDDisplayTime" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">3000</Value>
+      <Value Profile="(Default)">5000</Value>
     </Setting>
     <Setting Name="OSDPosition" Type="WindowsFormsApplication1.Helpers.OSDPosition" Scope="User">
       <Value Profile="(Default)">ScreenBottom</Value>

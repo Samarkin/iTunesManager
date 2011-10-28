@@ -39,15 +39,7 @@ namespace WindowsFormsApplication1
 		private void ApplySettings()
 		{
 			closeTimer.Interval = Settings.Default.OSDDisplayTime;
-			var opacity = Settings.Default.OSDOpacity;
-			_maxOpacity = Math.Max(Math.Min(opacity, 1), 0);
-			// ReSharper disable CompareOfFloatsByEqualityOperator
-			// we're not performing arithmetic operations on opacity,
-			// so it will not lose its precision
-			// but it is okay to rewrite settings anyway
-			if (_maxOpacity != opacity)
-				Settings.Default.OSDOpacity = _maxOpacity;
-			// ReSharper restore CompareOfFloatsByEqualityOperator
+			_maxOpacity = Settings.Default.OSDOpacity;
 			_osdPosition = Settings.Default.OSDPosition;
 		}
 
