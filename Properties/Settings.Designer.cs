@@ -166,5 +166,149 @@ namespace WindowsFormsApplication1.Properties {
                 this["OSDDisplayOnPause"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        public global::System.Windows.Forms.Keys SetOneStarHotkey {
+            get {
+                return ((global::System.Windows.Forms.Keys)(this["SetOneStarHotkey"]));
+            }
+            set {
+                this["SetOneStarHotkey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        public global::WindowsFormsApplication1.Helpers.ModifierKeys SetOneStarModifiers {
+            get {
+                return ((global::WindowsFormsApplication1.Helpers.ModifierKeys)(this["SetOneStarModifiers"]));
+            }
+            set {
+                this["SetOneStarModifiers"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        public global::System.Windows.Forms.Keys SetTwoStarsHotkey {
+            get {
+                return ((global::System.Windows.Forms.Keys)(this["SetTwoStarsHotkey"]));
+            }
+            set {
+                this["SetTwoStarsHotkey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        public global::WindowsFormsApplication1.Helpers.ModifierKeys SetTwoStarsModifiers {
+            get {
+                return ((global::WindowsFormsApplication1.Helpers.ModifierKeys)(this["SetTwoStarsModifiers"]));
+            }
+            set {
+                this["SetTwoStarsModifiers"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        public global::System.Windows.Forms.Keys SetThreeStarsHotkey {
+            get {
+                return ((global::System.Windows.Forms.Keys)(this["SetThreeStarsHotkey"]));
+            }
+            set {
+                this["SetThreeStarsHotkey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        public global::WindowsFormsApplication1.Helpers.ModifierKeys SetThreeStarsModifiers {
+            get {
+                return ((global::WindowsFormsApplication1.Helpers.ModifierKeys)(this["SetThreeStarsModifiers"]));
+            }
+            set {
+                this["SetThreeStarsModifiers"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        public global::System.Windows.Forms.Keys SetFourStarsHotkey {
+            get {
+                return ((global::System.Windows.Forms.Keys)(this["SetFourStarsHotkey"]));
+            }
+            set {
+                this["SetFourStarsHotkey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        public global::WindowsFormsApplication1.Helpers.ModifierKeys SetFourStarsModifiers {
+            get {
+                return ((global::WindowsFormsApplication1.Helpers.ModifierKeys)(this["SetFourStarsModifiers"]));
+            }
+            set {
+                this["SetFourStarsModifiers"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        public global::System.Windows.Forms.Keys SetFiveStarsHotkey {
+            get {
+                return ((global::System.Windows.Forms.Keys)(this["SetFiveStarsHotkey"]));
+            }
+            set {
+                this["SetFiveStarsHotkey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        public global::WindowsFormsApplication1.Helpers.ModifierKeys SetFiveStarsModifiers {
+            get {
+                return ((global::WindowsFormsApplication1.Helpers.ModifierKeys)(this["SetFiveStarsModifiers"]));
+            }
+            set {
+                this["SetFiveStarsModifiers"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        public global::System.Windows.Forms.Keys SetNoStarsHotkey {
+            get {
+                return ((global::System.Windows.Forms.Keys)(this["SetNoStarsHotkey"]));
+            }
+            set {
+                this["SetNoStarsHotkey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        public global::WindowsFormsApplication1.Helpers.ModifierKeys SetNoStarsModifiers {
+            get {
+                return ((global::WindowsFormsApplication1.Helpers.ModifierKeys)(this["SetNoStarsModifiers"]));
+            }
+            set {
+                this["SetNoStarsModifiers"] = value;
+            }
+        }
     }
 }

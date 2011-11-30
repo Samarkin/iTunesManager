@@ -32,6 +32,13 @@ namespace WindowsFormsApplication1
 			RegisterHotKey("NextTrack", NextTrack);
 			RegisterHotKey("PrevTrack", PrevTrack);
 
+			RegisterHotKey("SetNoStars", (o, e) => AssignStars(0));
+			RegisterHotKey("SetOneStar", (o, e) => AssignStars(20));
+			RegisterHotKey("SetTwoStars", (o, e) => AssignStars(40));
+			RegisterHotKey("SetThreeStars", (o, e) => AssignStars(60));
+			RegisterHotKey("SetFourStars", (o, e) => AssignStars(80));
+			RegisterHotKey("SetFiveStars", (o, e) => AssignStars(100));
+
 			Settings.Default.SettingsSaving += SettingsSaving;
 		}
 
@@ -70,6 +77,11 @@ namespace WindowsFormsApplication1
 			{
 				modifier = GetSetting<ModifierKeys>(string.Format(ModifiersSettingFormat, settingName));
 				key = GetSetting<Keys>(string.Format(KeysSettingFormat, settingName));
+				if(key == Keys.None)
+				{
+					newHook.Dispose();
+					return null;
+				}
 				newHook.KeyPressed += handler;
 				newHook.RegisterHotKey(modifier, key);
 				return newHook;
@@ -95,6 +107,18 @@ namespace WindowsFormsApplication1
 				throw new Exception(string.Format("Cannot find setting named \"{0}\"!", name));
 
 			return (T)setting;
+		}
+
+		private void AssignStars(int rating)
+		{
+			try
+			{
+				_player.CurrentTrack.Rating = rating;
+			}
+			catch (COMException)
+			{
+
+			}
 		}
 
 		private void PlayPause(object sender, KeyPressedEventArgs e)

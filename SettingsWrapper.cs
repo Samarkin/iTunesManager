@@ -85,6 +85,108 @@ namespace WindowsFormsApplication1
 			set { _settings.SelectSongModifiers = value; }
 		}
 
+		[Category("Stars")]
+		[DisplayName("No stars hotkey")]
+		[Description("Assign no stars rating to the current track")]
+		public System.Windows.Forms.Keys SetNoStarsHotkey
+		{
+			get { return _settings.SetNoStarsHotkey; }
+			set { _settings.SetNoStarsHotkey = value; }
+		}
+		[Category("Stars")]
+		[DisplayName("No stars modifiers")]
+		[Description("Assign no stars rating to the current track")]
+		public Helpers.ModifierKeys SetNoStarsModifiers
+		{
+			get { return _settings.SetNoStarsModifiers; }
+			set { _settings.SetNoStarsModifiers = value; }
+		}
+
+		[Category("Stars")]
+		[DisplayName("One star hotkey")]
+		[Description("Assign one star rating to the current track")]
+		public System.Windows.Forms.Keys SetOneStarHotkey
+		{
+			get { return _settings.SetOneStarHotkey; }
+			set { _settings.SetOneStarHotkey = value; }
+		}
+		[Category("Stars")]
+		[DisplayName("One star modifiers")]
+		[Description("Assign one star rating to the current track")]
+		public Helpers.ModifierKeys SetOneStarModifiers
+		{
+			get { return _settings.SetOneStarModifiers; }
+			set { _settings.SetOneStarModifiers = value; }
+		}
+
+		[Category("Stars")]
+		[DisplayName("Two stars hotkey")]
+		[Description("Assign two stars rating to the current track")]
+		public System.Windows.Forms.Keys SetTwoStarsHotkey
+		{
+			get { return _settings.SetTwoStarsHotkey; }
+			set { _settings.SetTwoStarsHotkey = value; }
+		}
+		[Category("Stars")]
+		[DisplayName("Two stars modifiers")]
+		[Description("Assign two stars rating to the current track")]
+		public Helpers.ModifierKeys SetTwoStarsModifiers
+		{
+			get { return _settings.SetTwoStarsModifiers; }
+			set { _settings.SetTwoStarsModifiers = value; }
+		}
+
+		[Category("Stars")]
+		[DisplayName("Three stars hotkey")]
+		[Description("Assign three stars rating to the current track")]
+		public System.Windows.Forms.Keys SetThreeStarsHotkey
+		{
+			get { return _settings.SetThreeStarsHotkey; }
+			set { _settings.SetThreeStarsHotkey = value; }
+		}
+		[Category("Stars")]
+		[DisplayName("Three stars modifiers")]
+		[Description("Assign three stars rating to the current track")]
+		public Helpers.ModifierKeys SetThreeStarsModifiers
+		{
+			get { return _settings.SetThreeStarsModifiers; }
+			set { _settings.SetThreeStarsModifiers = value; }
+		}
+
+		[Category("Stars")]
+		[DisplayName("Four stars hotkey")]
+		[Description("Assign four stars rating to the current track")]
+		public System.Windows.Forms.Keys SetFourStarsHotkey
+		{
+			get { return _settings.SetFourStarsHotkey; }
+			set { _settings.SetFourStarsHotkey = value; }
+		}
+		[Category("Stars")]
+		[DisplayName("Four stars modifiers")]
+		[Description("Assign four stars rating to the current track")]
+		public Helpers.ModifierKeys SetFourStarsModifiers
+		{
+			get { return _settings.SetFourStarsModifiers; }
+			set { _settings.SetFourStarsModifiers = value; }
+		}
+
+		[Category("Stars")]
+		[DisplayName("Five stars hotkey")]
+		[Description("Assign five stars rating to the current track")]
+		public System.Windows.Forms.Keys SetFiveStarsHotkey
+		{
+			get { return _settings.SetFiveStarsHotkey; }
+			set { _settings.SetFiveStarsHotkey = value; }
+		}
+		[Category("Stars")]
+		[DisplayName("Five stars modifiers")]
+		[Description("Assign five stars rating to the current track")]
+		public Helpers.ModifierKeys SetFiveStarsModifiers
+		{
+			get { return _settings.SetFiveStarsModifiers; }
+			set { _settings.SetFiveStarsModifiers = value; }
+		}
+
 		[Category("OSD")]
 		[DefaultValue(0.85)]
 		[Description("Opacity of the OSD window, where 0 stands for totally invisible and 1 for totally opaque.")]

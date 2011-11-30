@@ -38,5 +38,41 @@
     <Setting Name="OSDDisplayOnPause" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="SetOneStarHotkey" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">None</Value>
+    </Setting>
+    <Setting Name="SetOneStarModifiers" Type="WindowsFormsApplication1.Helpers.ModifierKeys" Scope="User">
+      <Value Profile="(Default)">None</Value>
+    </Setting>
+    <Setting Name="SetTwoStarsHotkey" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">None</Value>
+    </Setting>
+    <Setting Name="SetTwoStarsModifiers" Type="WindowsFormsApplication1.Helpers.ModifierKeys" Scope="User">
+      <Value Profile="(Default)">None</Value>
+    </Setting>
+    <Setting Name="SetThreeStarsHotkey" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">None</Value>
+    </Setting>
+    <Setting Name="SetThreeStarsModifiers" Type="WindowsFormsApplication1.Helpers.ModifierKeys" Scope="User">
+      <Value Profile="(Default)">None</Value>
+    </Setting>
+    <Setting Name="SetFourStarsHotkey" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">None</Value>
+    </Setting>
+    <Setting Name="SetFourStarsModifiers" Type="WindowsFormsApplication1.Helpers.ModifierKeys" Scope="User">
+      <Value Profile="(Default)">None</Value>
+    </Setting>
+    <Setting Name="SetFiveStarsHotkey" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">None</Value>
+    </Setting>
+    <Setting Name="SetFiveStarsModifiers" Type="WindowsFormsApplication1.Helpers.ModifierKeys" Scope="User">
+      <Value Profile="(Default)">None</Value>
+    </Setting>
+    <Setting Name="SetNoStarsHotkey" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">None</Value>
+    </Setting>
+    <Setting Name="SetNoStarsModifiers" Type="WindowsFormsApplication1.Helpers.ModifierKeys" Scope="User">
+      <Value Profile="(Default)">None</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
