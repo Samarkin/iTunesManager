@@ -32,6 +32,8 @@ namespace WindowsFormsApplication1
 			RegisterHotKey("NextTrack", NextTrack);
 			RegisterHotKey("PrevTrack", PrevTrack);
 
+			RegisterHotKey("ChangeWindowSize", ChangeWindowSize);
+
 			RegisterHotKey("SetNoStars", (o, e) => AssignStars(0));
 			RegisterHotKey("SetOneStar", (o, e) => AssignStars(20));
 			RegisterHotKey("SetTwoStars", (o, e) => AssignStars(40));
@@ -40,6 +42,22 @@ namespace WindowsFormsApplication1
 			RegisterHotKey("SetFiveStars", (o, e) => AssignStars(100));
 
 			Settings.Default.SettingsSaving += SettingsSaving;
+		}
+
+		private void ChangeWindowSize(object sender, KeyPressedEventArgs e)
+		{
+			try
+			{
+				var mainWindow = _player.BrowserWindow;
+				if (mainWindow != null)
+				{
+					mainWindow.MiniPlayer = !mainWindow.MiniPlayer;
+				}
+			}
+			catch (COMException)
+			{
+
+			}
 		}
 
 		private void SettingsSaving(object sender, CancelEventArgs e)

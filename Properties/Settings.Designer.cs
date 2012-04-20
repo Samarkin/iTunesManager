@@ -310,5 +310,29 @@ namespace WindowsFormsApplication1.Properties {
                 this["SetNoStarsModifiers"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("M")]
+        public global::System.Windows.Forms.Keys ChangeWindowSizeHotkey {
+            get {
+                return ((global::System.Windows.Forms.Keys)(this["ChangeWindowSizeHotkey"]));
+            }
+            set {
+                this["ChangeWindowSizeHotkey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Alt, Control, Shift")]
+        public global::WindowsFormsApplication1.Helpers.ModifierKeys ChangeWindowSizeModifiers {
+            get {
+                return ((global::WindowsFormsApplication1.Helpers.ModifierKeys)(this["ChangeWindowSizeModifiers"]));
+            }
+            set {
+                this["ChangeWindowSizeModifiers"] = value;
+            }
+        }
     }
 }

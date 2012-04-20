@@ -30,6 +30,7 @@ namespace WindowsFormsApplication1
 		}
 
 		[Category("Hotkeys")]
+		[Description("Play/pause")]
 		public System.Windows.Forms.Keys PlayPauseHotkey
 		{
 			get { return _settings.PlayPauseHotkey; }
@@ -37,6 +38,7 @@ namespace WindowsFormsApplication1
 		}
 
 		[Category("Hotkeys")]
+		[Description("Play/pause")]
 		public Helpers.ModifierKeys PlayPauseModifiers
 		{
 			get { return _settings.PlayPauseModifiers; }
@@ -44,6 +46,7 @@ namespace WindowsFormsApplication1
 		}
 
 		[Category("Hotkeys")]
+		[Description("Skip to the next track")]
 		public System.Windows.Forms.Keys NextTrackHotkey
 		{
 			get { return _settings.NextTrackHotkey; }
@@ -51,6 +54,7 @@ namespace WindowsFormsApplication1
 		}
 
 		[Category("Hotkeys")]
+		[Description("Skip to the next track")]
 		public Helpers.ModifierKeys NextTrackModifiers
 		{
 			get { return _settings.NextTrackModifiers; }
@@ -58,6 +62,7 @@ namespace WindowsFormsApplication1
 		}
 
 		[Category("Hotkeys")]
+		[Description("Rewind to the previous track")]
 		public System.Windows.Forms.Keys PrevTrackHotkey
 		{
 			get { return _settings.PrevTrackHotkey; }
@@ -65,6 +70,7 @@ namespace WindowsFormsApplication1
 		}
 
 		[Category("Hotkeys")]
+		[Description("Rewind to the previous track")]
 		public Helpers.ModifierKeys PrevTrackModifiers
 		{
 			get { return _settings.PrevTrackModifiers; }
@@ -72,6 +78,7 @@ namespace WindowsFormsApplication1
 		}
 
 		[Category("Hotkeys")]
+		[Description("Open \"Select Song\" window")]
 		public System.Windows.Forms.Keys SelectSongHotkey
 		{
 			get { return _settings.SelectSongHotkey; }
@@ -79,10 +86,27 @@ namespace WindowsFormsApplication1
 		}
 
 		[Category("Hotkeys")]
+		[Description("Open \"Select Song\" window")]
 		public Helpers.ModifierKeys SelectSongModifiers
 		{
 			get { return _settings.SelectSongModifiers; }
 			set { _settings.SelectSongModifiers = value; }
+		}
+
+		[Category("Hotkeys")]
+		[Description("Change size of the main iTunes window")]
+		public System.Windows.Forms.Keys ChangeWindowSizeHotkey
+		{
+			get { return _settings.ChangeWindowSizeHotkey; }
+			set { _settings.ChangeWindowSizeHotkey = ValidateKey(value); }
+		}
+
+		[Category("Hotkeys")]
+		[Description("Change size of the main iTunes window")]
+		public Helpers.ModifierKeys ChangeWindowSizeModifiers
+		{
+			get { return _settings.ChangeWindowSizeModifiers; }
+			set { _settings.ChangeWindowSizeModifiers = value; }
 		}
 
 		[Category("Stars")]

@@ -74,5 +74,11 @@
     <Setting Name="SetNoStarsModifiers" Type="WindowsFormsApplication1.Helpers.ModifierKeys" Scope="User">
       <Value Profile="(Default)">None</Value>
     </Setting>
+    <Setting Name="ChangeWindowSizeHotkey" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">M</Value>
+    </Setting>
+    <Setting Name="ChangeWindowSizeModifiers" Type="WindowsFormsApplication1.Helpers.ModifierKeys" Scope="User">
+      <Value Profile="(Default)">Alt, Control, Shift</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

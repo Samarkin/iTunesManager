@@ -92,7 +92,7 @@ namespace WindowsFormsApplication1
 			var wa = Screen.GetWorkingArea(this);
 			if (_osdPosition == OSDPosition.ScreenBottom)
 			{
-				Top = wa.Height - Height;
+				Top = wa.Top + wa.Height - Height;
 				Left = 0;
 				Width = wa.Width;
 			}
