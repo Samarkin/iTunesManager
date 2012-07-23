@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using WindowsFormsApplication1.Properties;
-using iTunesLib;
 
 namespace WindowsFormsApplication1
 {
@@ -15,35 +13,40 @@ namespace WindowsFormsApplication1
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			var player = new iTunesAppClass();
-			player.OnAboutToPromptUserToQuitEvent += Application.Exit;
-
-			// Hotkey service
-			using (var hotkeyService = new HotkeyService(player))
+			using (var control = new PlayerControllerService())
 			{
-				var selectSongVisualService = new VisualService {
-					Form = new SelectSongForm(player),
-					MenuEntry = "&Select song"
-				};
+				control.Player.OnAboutToPromptUserToQuitEvent += Application.Exit;
 
-				hotkeyService.RegisterHotKey("SelectSong",
-					(o, e) => selectSongVisualService.Activate());
-
-				// Tray service
-				using (new TrayService(new[] { selectSongVisualService,
-					new VisualService {
-						Form = new MainForm(player),
-						MenuEntry = "Show &MiniPlayer"
-					},
-					new VisualService {
-						Form = new SettingsForm(),
-						MenuEntry = "S&ettings"
-					}
-				}))
+				// Hotkey service
+				using (var hotkeyService = new HotkeyService())
 				{
-					using (new OSDService(player))
+					control.RegisterHotkeyService(hotkeyService);
+
+					var selectSongVisualService = new VisualService
 					{
-						Application.Run();
+						Form = new SelectSongForm(control.Player),
+						MenuEntry = "&Select song"
+					};
+					hotkeyService.RegisterHotKey("SelectSong",
+						(o, e) => selectSongVisualService.Activate());
+
+					// Tray service
+					using (var trayService = new TrayService(new[] { selectSongVisualService,
+						new VisualService {
+							Form = new MainForm(control),
+							MenuEntry = "Show &MiniPlayer"
+						},
+						new VisualService {
+							Form = new SettingsForm(),
+							MenuEntry = "S&ettings"
+						}
+					}))
+					{
+						control.RegisterNotificationService(trayService);
+						using (new OSDService(control))
+						{
+							Application.Run();
+						}
 					}
 				}
 			}

@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Helpers\OSDPosition.cs" />
+    <Compile Include="INotificationService.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -71,6 +72,7 @@
     <Compile Include="PausedForm.Designer.cs">
       <DependentUpon>PausedForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PlayerControllerService.cs" />
     <Compile Include="SelectSongForm.cs">
       <SubType>Form</SubType>
     </Compile>

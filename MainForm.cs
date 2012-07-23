@@ -9,36 +9,27 @@ namespace WindowsFormsApplication1
 {
 	public partial class MainForm : Form
 	{
-		private readonly iTunesAppClass _player;
+		private readonly PlayerControllerService _control;
 
-		public MainForm(iTunesAppClass player)
+		public MainForm(PlayerControllerService control)
 		{
-			if (player == null) return;
-			_player = player;
+			if (control == null) return;
+			_control = control;
 			InitializeComponent();
 			Icon = new Icon(GetType(), "Main.ico");
 		}
 
 		private void ButtonClick(object sender, EventArgs e)
 		{
-			try
-			{
-				if (_player.PlayerState == ITPlayerState.ITPlayerStatePlaying)
-					_player.Pause();
-				else
-					_player.Play();
-			}
-			catch (COMException)
-			{
-
-			}
+			_control.PlayPause();
 		}
 
 		private void OnTrackChanged(object iTrack)
 		{
 			try
 			{
-				var current = iTrack as IITTrack ?? _player.CurrentTrack;
+				var player = _control.Player;
+				var current = iTrack as IITTrack ?? player.CurrentTrack;
 				if(current == null) return;
 				Action changeText = () =>
 					{
@@ -77,16 +68,17 @@ namespace WindowsFormsApplication1
 
 		private void MainFormVisibleChanged(object sender, EventArgs e)
 		{
+			var player = _control.Player;
 			if (Visible)
 			{
-				_player.OnPlayerPlayEvent += OnTrackChanged;
-				_player.OnPlayerPlayingTrackChangedEvent += OnTrackChanged;
+				player.OnPlayerPlayEvent += OnTrackChanged;
+				player.OnPlayerPlayingTrackChangedEvent += OnTrackChanged;
 				OnTrackChanged(null);
 			}
 			else
 			{
-				_player.OnPlayerPlayEvent -= OnTrackChanged;
-				_player.OnPlayerPlayingTrackChangedEvent -= OnTrackChanged;
+				player.OnPlayerPlayEvent -= OnTrackChanged;
+				player.OnPlayerPlayingTrackChangedEvent -= OnTrackChanged;
 			}
 		}
 	}

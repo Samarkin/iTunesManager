@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using WindowsFormsApplication1.Helpers;
-using iTunesLib;
 using WindowsFormsApplication1.Properties;
 
 namespace WindowsFormsApplication1
@@ -14,70 +12,17 @@ namespace WindowsFormsApplication1
 		private readonly List<string> _settings;
 		private readonly List<EventHandler<KeyPressedEventArgs>> _handlers;
 		private readonly Queue<KeyboardHook> _hooks;
-		private readonly iTunesAppClass _player;
 
 		private const string ModifiersSettingFormat = "{0}Modifiers";
 		private const string KeysSettingFormat = "{0}Hotkey";
 
-		public HotkeyService(iTunesAppClass player)
+		public HotkeyService()
 		{
-			if(player == null) return;
-			_player = player;
-
 			_hooks = new Queue<KeyboardHook>();
 			_settings = new List<string>();
 			_handlers = new List<EventHandler<KeyPressedEventArgs>>();
 
-			RegisterHotKey("PlayPause", PlayPause);
-			RegisterHotKey("NextTrack", NextTrack);
-			RegisterHotKey("PrevTrack", PrevTrack);
-
-			RegisterHotKey("ChangeWindowSize", ChangeWindowSize);
-			RegisterHotKey("RepeatCurrentSong", RepeatCurrentSong);
-
-			RegisterHotKey("SetNoStars", (o, e) => AssignStars(0));
-			RegisterHotKey("SetOneStar", (o, e) => AssignStars(20));
-			RegisterHotKey("SetTwoStars", (o, e) => AssignStars(40));
-			RegisterHotKey("SetThreeStars", (o, e) => AssignStars(60));
-			RegisterHotKey("SetFourStars", (o, e) => AssignStars(80));
-			RegisterHotKey("SetFiveStars", (o, e) => AssignStars(100));
-
 			Settings.Default.SettingsSaving += SettingsSaving;
-		}
-
-		private void RepeatCurrentSong(object sender, KeyPressedEventArgs e)
-		{
-			try
-			{
-				object playlist = _player.CurrentPlaylist;
-				if (playlist != null && _player.get_CanSetSongRepeat(ref playlist))
-				{
-					_player.CurrentPlaylist.SongRepeat =
-						_player.CurrentPlaylist.SongRepeat == ITPlaylistRepeatMode.ITPlaylistRepeatModeOff
-						? ITPlaylistRepeatMode.ITPlaylistRepeatModeOne
-						: ITPlaylistRepeatMode.ITPlaylistRepeatModeOff;
-				}
-			}
-			catch (COMException)
-			{
-
-			}
-		}
-
-		private void ChangeWindowSize(object sender, KeyPressedEventArgs e)
-		{
-			try
-			{
-				var mainWindow = _player.BrowserWindow;
-				if (mainWindow != null)
-				{
-					mainWindow.MiniPlayer = !mainWindow.MiniPlayer;
-				}
-			}
-			catch (COMException)
-			{
-
-			}
 		}
 
 		private void SettingsSaving(object sender, CancelEventArgs e)
@@ -145,57 +90,6 @@ namespace WindowsFormsApplication1
 				throw new Exception(string.Format("Cannot find setting named \"{0}\"!", name));
 
 			return (T)setting;
-		}
-
-		private void AssignStars(int rating)
-		{
-			try
-			{
-				_player.CurrentTrack.Rating = rating;
-			}
-			catch (COMException)
-			{
-
-			}
-		}
-
-		private void PlayPause(object sender, KeyPressedEventArgs e)
-		{
-			try
-			{
-				if (_player.PlayerState == ITPlayerState.ITPlayerStatePlaying)
-					_player.Pause();
-				else
-					_player.Play();
-			}
-			catch (COMException)
-			{
-
-			}
-		}
-
-		private void NextTrack(object sender, KeyPressedEventArgs e)
-		{
-			try
-			{
-				_player.NextTrack();
-			}
-			catch (COMException)
-			{
-
-			}
-		}
-
-		private void PrevTrack(object sender, KeyPressedEventArgs e)
-		{
-			try
-			{
-				_player.PreviousTrack();
-			}
-			catch (COMException)
-			{
-
-			}
 		}
 
 		private void DestroyHooks()

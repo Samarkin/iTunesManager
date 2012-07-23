@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace WindowsFormsApplication1
 {
-	public class TrayService : IDisposable
+	public class TrayService : INotificationService, IDisposable
 	{
 		private NotifyIcon _icon;
 		private VisualService[] _services;
@@ -34,9 +34,14 @@ namespace WindowsFormsApplication1
 			Application.ApplicationExit += ApplicationExit;
 		}
 
-		public void ShowNotification(string title, string message, ToolTipIcon icon)
+		public void Notify(string message)
 		{
-			_icon.ShowBalloonTip(2000, title, message, icon);
+			_icon.ShowBalloonTip(1000, "iTunes manager", message, ToolTipIcon.Info);
+		}
+
+		public void ReportError(string message)
+		{
+			_icon.ShowBalloonTip(1000, "iTunes manager", message, ToolTipIcon.Error);
 		}
 
 		void ApplicationExit(object sender, EventArgs e)

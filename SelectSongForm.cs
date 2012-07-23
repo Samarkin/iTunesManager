@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using WindowsFormsApplication1.Helpers;
-using WindowsFormsApplication1.Properties;
 using iTunesLib;
 
 namespace WindowsFormsApplication1
@@ -12,10 +11,10 @@ namespace WindowsFormsApplication1
 
 	public partial class SelectSongForm : Form
 	{
-		private readonly iTunesAppClass _player;
+		private readonly iTunesApp _player;
 		private IITPlaylist _playlist;
 
-		public SelectSongForm(iTunesAppClass player)
+		public SelectSongForm(iTunesApp player)
 		{
 			if (player == null) return;
 			_player = player;

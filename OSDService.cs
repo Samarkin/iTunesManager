@@ -10,17 +10,17 @@ namespace WindowsFormsApplication1
 {
 	class OSDService : IDisposable
 	{
-		private readonly iTunesAppClass _player;
+		private readonly PlayerControllerService _controller;
 		private readonly OSDForm _osd;
 		private PausedForm _pausedForm;
 
-		public OSDService(iTunesAppClass player)
+		public OSDService(PlayerControllerService controller)
 		{
-			if (player == null) return;
-			_player = player;
-			_player.OnPlayerPlayEvent += OnPlayerEvent;
-			_player.OnPlayerPlayingTrackChangedEvent += OnPlayerEvent;
-			_player.OnPlayerStopEvent += OnPlayerEvent;
+			if (controller == null) return;
+			_controller = controller;
+			_controller.Player.OnPlayerPlayEvent += OnPlayerEvent;
+			_controller.Player.OnPlayerPlayingTrackChangedEvent += OnPlayerEvent;
+			_controller.Player.OnPlayerStopEvent += OnPlayerEvent;
 			_osd = new OSDForm();
 			ApplySettings();
 
@@ -48,14 +48,15 @@ namespace WindowsFormsApplication1
 		{
 			try
 			{
-				if (_player.PlayerState == ITPlayerState.ITPlayerStateStopped)
+				var player = _controller.Player;
+				if (player.PlayerState == ITPlayerState.ITPlayerStateStopped)
 				{
 					if(_pausedForm != null)
 						_pausedForm.Start();
 					return;
 				}
 
-				var current = _player.CurrentTrack;
+				var current = player.CurrentTrack;
 				var artwork = current.Artwork.OfType<IITArtwork>().FirstOrDefault();
 				string artworkFileName = null;
 				try
@@ -92,9 +93,9 @@ namespace WindowsFormsApplication1
 			Disposed = true;
 			_osd.Close();
 			_osd.Dispose();
-			_player.OnPlayerPlayEvent -= OnPlayerEvent;
-			_player.OnPlayerPlayingTrackChangedEvent -= OnPlayerEvent;
-			_player.OnPlayerStopEvent -= OnPlayerEvent;
+			_controller.Player.OnPlayerPlayEvent -= OnPlayerEvent;
+			_controller.Player.OnPlayerPlayingTrackChangedEvent -= OnPlayerEvent;
+			_controller.Player.OnPlayerStopEvent -= OnPlayerEvent;
 
 			if (_pausedForm != null)
 			{
