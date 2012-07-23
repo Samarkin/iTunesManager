@@ -33,6 +33,7 @@ namespace WindowsFormsApplication1
 			RegisterHotKey("PrevTrack", PrevTrack);
 
 			RegisterHotKey("ChangeWindowSize", ChangeWindowSize);
+			RegisterHotKey("RepeatCurrentSong", RepeatCurrentSong);
 
 			RegisterHotKey("SetNoStars", (o, e) => AssignStars(0));
 			RegisterHotKey("SetOneStar", (o, e) => AssignStars(20));
@@ -42,6 +43,25 @@ namespace WindowsFormsApplication1
 			RegisterHotKey("SetFiveStars", (o, e) => AssignStars(100));
 
 			Settings.Default.SettingsSaving += SettingsSaving;
+		}
+
+		private void RepeatCurrentSong(object sender, KeyPressedEventArgs e)
+		{
+			try
+			{
+				object playlist = _player.CurrentPlaylist;
+				if (playlist != null && _player.get_CanSetSongRepeat(ref playlist))
+				{
+					_player.CurrentPlaylist.SongRepeat =
+						_player.CurrentPlaylist.SongRepeat == ITPlaylistRepeatMode.ITPlaylistRepeatModeOff
+						? ITPlaylistRepeatMode.ITPlaylistRepeatModeOne
+						: ITPlaylistRepeatMode.ITPlaylistRepeatModeOff;
+				}
+			}
+			catch (COMException)
+			{
+
+			}
 		}
 
 		private void ChangeWindowSize(object sender, KeyPressedEventArgs e)

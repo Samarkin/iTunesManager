@@ -34,6 +34,11 @@ namespace WindowsFormsApplication1
 			Application.ApplicationExit += ApplicationExit;
 		}
 
+		public void ShowNotification(string title, string message, ToolTipIcon icon)
+		{
+			_icon.ShowBalloonTip(2000, title, message, icon);
+		}
+
 		void ApplicationExit(object sender, EventArgs e)
 		{
 			Dispose();

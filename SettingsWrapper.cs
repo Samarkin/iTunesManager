@@ -109,6 +109,22 @@ namespace WindowsFormsApplication1
 			set { _settings.ChangeWindowSizeModifiers = value; }
 		}
 
+		[Category("Hotkeys")]
+		[Description("Toggle repetition of the current song")]
+		public System.Windows.Forms.Keys RepeatCurrentSongHotkey
+		{
+			get { return _settings.RepeatCurrentSongHotkey; }
+			set { _settings.RepeatCurrentSongHotkey = ValidateKey(value); }
+		}
+
+		[Category("Hotkeys")]
+		[Description("Toggle repetition of the current song")]
+		public Helpers.ModifierKeys RepeatCurrentSongModifiers
+		{
+			get { return _settings.RepeatCurrentSongModifiers; }
+			set { _settings.RepeatCurrentSongModifiers = value; }
+		}
+
 		[Category("Stars")]
 		[DisplayName("No stars hotkey")]
 		[Description("Assign no stars rating to the current track")]
