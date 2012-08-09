@@ -358,5 +358,29 @@ namespace WindowsFormsApplication1.Properties {
                 this["RepeatCurrentSongModifiers"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        public global::System.Windows.Forms.Keys ShowLyricsHotkey {
+            get {
+                return ((global::System.Windows.Forms.Keys)(this["ShowLyricsHotkey"]));
+            }
+            set {
+                this["ShowLyricsHotkey"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("None")]
+        public global::WindowsFormsApplication1.Helpers.ModifierKeys ShowLyricsModifiers {
+            get {
+                return ((global::WindowsFormsApplication1.Helpers.ModifierKeys)(this["ShowLyricsModifiers"]));
+            }
+            set {
+                this["ShowLyricsModifiers"] = value;
+            }
+        }
     }
 }

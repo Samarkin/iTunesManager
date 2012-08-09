@@ -54,9 +54,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CloseButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Helpers\ExtensionMethods.cs" />
     <Compile Include="Helpers\OSDPosition.cs" />
     <Compile Include="INotificationService.cs" />
+    <Compile Include="LyricsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LyricsForm.Designer.cs">
+      <DependentUpon>LyricsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,6 +146,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="artwork.png" />
+    <EmbeddedResource Include="LyricsForm.resx">
+      <DependentUpon>LyricsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PausedForm.resx">
       <DependentUpon>PausedForm.cs</DependentUpon>
     </EmbeddedResource>

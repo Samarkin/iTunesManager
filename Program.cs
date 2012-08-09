@@ -30,12 +30,21 @@ namespace WindowsFormsApplication1
 					hotkeyService.RegisterHotKey("SelectSong",
 						(o, e) => selectSongVisualService.Activate());
 
+					var lyricsVisualService = new VisualService
+					{
+						Form = new LyricsForm(control),
+						MenuEntry = "Show &Lyrics"
+					};
+					hotkeyService.RegisterHotKey("ShowLyrics",
+						(o, e) => lyricsVisualService.Activate());
+
 					// Tray service
 					using (var trayService = new TrayService(new[] { selectSongVisualService,
 						new VisualService {
 							Form = new MainForm(control),
 							MenuEntry = "Show &MiniPlayer"
 						},
+						lyricsVisualService,
 						new VisualService {
 							Form = new SettingsForm(),
 							MenuEntry = "S&ettings"

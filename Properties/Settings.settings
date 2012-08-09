@@ -86,5 +86,11 @@
     <Setting Name="RepeatCurrentSongModifiers" Type="WindowsFormsApplication1.Helpers.ModifierKeys" Scope="User">
       <Value Profile="(Default)">Alt, Control, Shift</Value>
     </Setting>
+    <Setting Name="ShowLyricsHotkey" Type="System.Windows.Forms.Keys" Scope="User">
+      <Value Profile="(Default)">None</Value>
+    </Setting>
+    <Setting Name="ShowLyricsModifiers" Type="WindowsFormsApplication1.Helpers.ModifierKeys" Scope="User">
+      <Value Profile="(Default)">None</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

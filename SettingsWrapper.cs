@@ -125,6 +125,22 @@ namespace WindowsFormsApplication1
 			set { _settings.RepeatCurrentSongModifiers = value; }
 		}
 
+		[Category("Hotkeys")]
+		[Description("Show lyrics window")]
+		public System.Windows.Forms.Keys ShowLyricsHotkey
+		{
+			get { return _settings.ShowLyricsHotkey; }
+			set { _settings.ShowLyricsHotkey = ValidateKey(value); }
+		}
+
+		[Category("Hotkeys")]
+		[Description("Show lyrics window")]
+		public Helpers.ModifierKeys ShowLyricsModifiers
+		{
+			get { return _settings.ShowLyricsModifiers; }
+			set { _settings.ShowLyricsModifiers = value; }
+		}
+
 		[Category("Stars")]
 		[DisplayName("No stars hotkey")]
 		[Description("Assign no stars rating to the current track")]
