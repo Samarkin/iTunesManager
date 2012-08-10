@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -12,12 +13,12 @@ namespace WindowsFormsApplication1
 {
 	public partial class LyricsForm : Form
 	{
-		private const string GetArtistUrlFormat = @"http://lyrics.wikia.com/api.php?artist={0}&fmt=xml";
+		private const string GetArtistUrlFormat = @"http://lyrics.wikia.com/api.php?artist={0}&fmt=text";
 		private const string GetLyricsUrlFormat = @"http://lyrics.wikia.com/{0}:{1}";
 		protected static Regex Regex = new Regex(@"<div class=['""]lyricbox['""]>[^<]*(<div.*</div>)*(?<lyrics>.*)<!--", RegexOptions.Compiled | RegexOptions.Multiline | RegexOptions.IgnoreCase);
 		protected static Regex NewLine = new Regex(@"<br[ /]*>", RegexOptions.Compiled);
 		protected static Regex CodedSymbol = new Regex(@"&#(?<value>[0-9]+);", RegexOptions.Compiled);
-		protected static Regex ArtistName = new Regex(@"<artist>(?<artist>[^<]+)</artist>", RegexOptions.Compiled);
+		protected static Regex ArtistName = new Regex(@"(?<artist>[^:]+):(?<title>.+)", RegexOptions.Compiled);
 
 		private readonly PlayerControllerService _control;
 
@@ -90,18 +91,18 @@ namespace WindowsFormsApplication1
 				var current = iTrack as IITTrack ?? player.CurrentTrack;
 				if (current == null) return;
 
-				var artist = current.Artist;
-				var title = current.Name;
-
 				var file = current as IITFileOrCDTrack;
 				if (file != null && !string.IsNullOrEmpty(file.Lyrics))
 				{
+					var artist = current.Artist;
+					var title = current.Name;
+
 					SetLyrics(file.Lyrics, string.Format("{0} - {1}", artist, title));
 					return;
 				}
 
 				Action<SongFetching> doFetch = StartFetchLyrics;
-				Invoke(doFetch, new SongFetching(artist, title));
+				Invoke(doFetch, new SongFetching(current));
 			}
 			catch (COMException)
 			{
@@ -112,13 +113,15 @@ namespace WindowsFormsApplication1
 		private class SongFetching
 		{
 			public WebClient WebClient;
+			public readonly IITTrack Track;
 			public readonly string Artist;
 			public readonly string Title;
 
-			public SongFetching(string artist, string title)
+			public SongFetching(IITTrack track)
 			{
-				Artist = artist;
-				Title = title;
+				Track = track;
+				Artist = track.Artist;
+				Title = track.Name;
 			}
 		}
 
@@ -129,11 +132,11 @@ namespace WindowsFormsApplication1
 			var uri = new Uri(string.Format(GetArtistUrlFormat, info.Artist));
 			var client = new WebClient();
 			info.WebClient = client;
-			client.DownloadDataCompleted += VerifyArtistComplete;
+			client.DownloadDataCompleted += VerifySongComplete;
 			client.DownloadDataAsync(uri, info);
 		}
 
-		private void VerifyArtistComplete(object sender, DownloadDataCompletedEventArgs e)
+		private void VerifySongComplete(object sender, DownloadDataCompletedEventArgs e)
 		{
 			if (e.Error != null)
 			{
@@ -144,12 +147,18 @@ namespace WindowsFormsApplication1
 			try
 			{
 				var xmlString = Encoding.UTF8.GetString(e.Result);
-				var artistName = ArtistName.Match(xmlString).Groups["artist"].ToString();
+				var artistName = ArtistName.Match(xmlString).Groups["artist"].Value;
 				var state = (SongFetching)e.UserState;
+
+				var songs = xmlString.Split(new[] { '\n', '\r' }, StringSplitOptions.RemoveEmptyEntries);
+				var song = songs.FirstOrDefault(s => s.Equals(artistName + ":" + state.Title, StringComparison.CurrentCultureIgnoreCase));
+				var title = state.Title;
+				if(song != null)
+					title = ArtistName.Match(song).Groups["title"].Value;
 				//state.Artist = artistName;
 				var client = state.WebClient;
 				client.DownloadStringCompleted += DownloadLyricsComplete;
-				var uri = new Uri(string.Format(GetLyricsUrlFormat, artistName, state.Title));
+				var uri = new Uri(string.Format(GetLyricsUrlFormat, artistName, title));
 				client.DownloadStringAsync(uri, state);
 			}
 			catch (Exception ex)
@@ -183,7 +192,7 @@ namespace WindowsFormsApplication1
 						});
 					SetLyrics(s, string.Format("{0} - {1}", state.Artist, state.Title));
 
-					var file = _control.Player.CurrentTrack as IITFileOrCDTrack;
+					var file = state.Track as IITFileOrCDTrack;
 					if (file != null)
 					{
 						file.Lyrics = s;
