@@ -37,7 +37,7 @@ namespace WindowsFormsApplication1
 			const int radius = 8;
 			int title = lblTitle.Height + lblTitle.Top;
 
-			if (Width != _lastWidth && Height != _lastHeight)
+			if (Width != _lastWidth || Height != _lastHeight)
 			{
 				var path = GetRoundedRectangle(radius, 0, 0, Width, Height);
 				Region = new Region(path);
@@ -263,6 +263,74 @@ namespace WindowsFormsApplication1
 		private void CloseClick(object sender, EventArgs e)
 		{
 			Close();
+		}
+
+		private bool _isResizingHorizontal;
+		private bool _isResizingVertical;
+		private Point _resizingFrom;
+		private void ResizePanelVMouseDown(object sender, MouseEventArgs e)
+		{
+			_resizingFrom = e.Location;
+			_isResizingVertical = true;
+		}
+
+		private void ResizePanelHMouseDown(object sender, MouseEventArgs e)
+		{
+			_resizingFrom = e.Location;
+			_isResizingHorizontal = true;
+		}
+
+		private void ResizePanelHVMouseDown(object sender, MouseEventArgs e)
+		{
+			_resizingFrom = e.Location;
+			_isResizingVertical = true;
+			_isResizingHorizontal = true;
+		}
+
+		private void ResizePanelMouseUp(object sender, MouseEventArgs e)
+		{
+			_isResizingHorizontal = false;
+			_isResizingVertical = false;
+		}
+
+		private void ResizePanelEMouseMove(object sender, MouseEventArgs e)
+		{
+			if (_isResizingHorizontal)
+			{
+				Width += e.Location.X - _resizingFrom.X;
+				Refresh();
+			}
+		}
+
+		private void ResizePanelWMouseMove(object sender, MouseEventArgs e)
+		{
+			if (_isResizingHorizontal)
+			{
+				Width += _resizingFrom.X - e.Location.X;
+				Left += e.Location.X - _resizingFrom.X;
+				Refresh();
+			}
+		}
+
+		private void ResizePanelSMouseMove(object sender, MouseEventArgs e)
+		{
+			if (_isResizingVertical)
+			{
+				Height += e.Location.Y - _resizingFrom.Y;
+				Refresh();
+			}
+		}
+
+		private void ResizePanelSEMouseMove(object sender, MouseEventArgs e)
+		{
+			ResizePanelSMouseMove(sender, e);
+			ResizePanelEMouseMove(sender, e);
+		}
+
+		private void ResizePanelSWMouseMove(object sender, MouseEventArgs e)
+		{
+			ResizePanelSMouseMove(sender, e);
+			ResizePanelWMouseMove(sender, e);
 		}
 	}
 }

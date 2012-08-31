@@ -32,6 +32,11 @@
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.lblLyrics = new System.Windows.Forms.Label();
 			this.btnClose = new WindowsFormsApplication1.CloseButton();
+			this.pnlResizeS = new System.Windows.Forms.Panel();
+			this.pnlResizeE = new System.Windows.Forms.Panel();
+			this.pnlResizeSE = new System.Windows.Forms.Panel();
+			this.pnlResizeSW = new System.Windows.Forms.Panel();
+			this.pnlResizeW = new System.Windows.Forms.Panel();
 			this.panel1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -94,13 +99,89 @@
 			this.btnClose.UseVisualStyleBackColor = false;
 			this.btnClose.Click += new System.EventHandler(this.CloseClick);
 			// 
+			// pnlResizeS
+			// 
+			this.pnlResizeS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
+						| System.Windows.Forms.AnchorStyles.Right)));
+			this.pnlResizeS.BackColor = System.Drawing.Color.Black;
+			this.pnlResizeS.Cursor = System.Windows.Forms.Cursors.SizeNS;
+			this.pnlResizeS.Location = new System.Drawing.Point(5, 376);
+			this.pnlResizeS.Margin = new System.Windows.Forms.Padding(0);
+			this.pnlResizeS.Name = "pnlResizeS";
+			this.pnlResizeS.Size = new System.Drawing.Size(275, 10);
+			this.pnlResizeS.TabIndex = 5;
+			this.pnlResizeS.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ResizePanelSMouseMove);
+			this.pnlResizeS.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ResizePanelVMouseDown);
+			this.pnlResizeS.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ResizePanelMouseUp);
+			// 
+			// pnlResizeE
+			// 
+			this.pnlResizeE.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+						| System.Windows.Forms.AnchorStyles.Right)));
+			this.pnlResizeE.BackColor = System.Drawing.Color.Black;
+			this.pnlResizeE.Cursor = System.Windows.Forms.Cursors.SizeWE;
+			this.pnlResizeE.Location = new System.Drawing.Point(280, 24);
+			this.pnlResizeE.Margin = new System.Windows.Forms.Padding(0);
+			this.pnlResizeE.Name = "pnlResizeE";
+			this.pnlResizeE.Size = new System.Drawing.Size(10, 352);
+			this.pnlResizeE.TabIndex = 6;
+			this.pnlResizeE.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ResizePanelEMouseMove);
+			this.pnlResizeE.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ResizePanelHMouseDown);
+			this.pnlResizeE.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ResizePanelMouseUp);
+			// 
+			// pnlResizeSE
+			// 
+			this.pnlResizeSE.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.pnlResizeSE.BackColor = System.Drawing.Color.Black;
+			this.pnlResizeSE.Cursor = System.Windows.Forms.Cursors.SizeNWSE;
+			this.pnlResizeSE.Location = new System.Drawing.Point(280, 376);
+			this.pnlResizeSE.Name = "pnlResizeSE";
+			this.pnlResizeSE.Size = new System.Drawing.Size(10, 10);
+			this.pnlResizeSE.TabIndex = 7;
+			this.pnlResizeSE.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ResizePanelSEMouseMove);
+			this.pnlResizeSE.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ResizePanelHVMouseDown);
+			this.pnlResizeSE.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ResizePanelMouseUp);
+			// 
+			// pnlResizeSW
+			// 
+			this.pnlResizeSW.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.pnlResizeSW.BackColor = System.Drawing.Color.Black;
+			this.pnlResizeSW.Cursor = System.Windows.Forms.Cursors.SizeNESW;
+			this.pnlResizeSW.Location = new System.Drawing.Point(-5, 376);
+			this.pnlResizeSW.Name = "pnlResizeSW";
+			this.pnlResizeSW.Size = new System.Drawing.Size(10, 10);
+			this.pnlResizeSW.TabIndex = 8;
+			this.pnlResizeSW.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ResizePanelSWMouseMove);
+			this.pnlResizeSW.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ResizePanelHVMouseDown);
+			this.pnlResizeSW.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ResizePanelMouseUp);
+			// 
+			// pnlResizeW
+			// 
+			this.pnlResizeW.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+						| System.Windows.Forms.AnchorStyles.Left)));
+			this.pnlResizeW.BackColor = System.Drawing.Color.Black;
+			this.pnlResizeW.Cursor = System.Windows.Forms.Cursors.SizeWE;
+			this.pnlResizeW.Location = new System.Drawing.Point(-6, 24);
+			this.pnlResizeW.Margin = new System.Windows.Forms.Padding(0);
+			this.pnlResizeW.Name = "pnlResizeW";
+			this.pnlResizeW.Size = new System.Drawing.Size(11, 352);
+			this.pnlResizeW.TabIndex = 9;
+			this.pnlResizeW.MouseMove += new System.Windows.Forms.MouseEventHandler(this.ResizePanelWMouseMove);
+			this.pnlResizeW.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ResizePanelHMouseDown);
+			this.pnlResizeW.MouseUp += new System.Windows.Forms.MouseEventHandler(this.ResizePanelMouseUp);
+			// 
 			// LyricsForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.DimGray;
 			this.CancelButton = this.btnClose;
-			this.ClientSize = new System.Drawing.Size(284, 384);
+			this.ClientSize = new System.Drawing.Size(285, 384);
+			this.Controls.Add(this.pnlResizeW);
+			this.Controls.Add(this.pnlResizeSW);
+			this.Controls.Add(this.pnlResizeSE);
+			this.Controls.Add(this.pnlResizeE);
+			this.Controls.Add(this.pnlResizeS);
 			this.Controls.Add(this.btnClose);
 			this.Controls.Add(this.panel1);
 			this.Controls.Add(this.lblTitle);
@@ -128,5 +209,10 @@
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Label lblLyrics;
 		private CloseButton btnClose;
+		private System.Windows.Forms.Panel pnlResizeS;
+		private System.Windows.Forms.Panel pnlResizeE;
+		private System.Windows.Forms.Panel pnlResizeSE;
+		private System.Windows.Forms.Panel pnlResizeSW;
+		private System.Windows.Forms.Panel pnlResizeW;
 	}
 }
